@@ -20,25 +20,25 @@ public class MaterialStorage implements Serializable{
 		return 0;
 	}
 
-	public Boolean hasMaterial(int blockID, int amought){
+	public Boolean hasMaterial(int blockID, int amount){
 		if(ms.containsKey(blockID)){
-			if(ms.get(blockID)>=amought){
+			if(ms.get(blockID)>=amount){
 				return true;
 			}
 		}
 		return false;
 	}
 
-	public void addMaterial(int blockID, int amought){
+	public void addMaterial(int blockID, int amount){
 		if(ms.containsKey(blockID)){
-			ms.put(blockID, ms.get(blockID)+amought);
+			ms.put(blockID, ms.get(blockID)+amount);
 		}
 	}
 
-	public boolean useMaterial(int blockID, int amought){
+	public boolean useMaterial(int blockID, int amount){
 		if(ms.containsKey(blockID)){
-			if(ms.get(blockID)>amought){
-				ms.put(blockID, ms.get(blockID)-amought);
+			if(ms.get(blockID)>amount){
+				ms.put(blockID, ms.get(blockID)-amount);
 				return true;
 			}
 		}
