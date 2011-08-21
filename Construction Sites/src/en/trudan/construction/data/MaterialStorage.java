@@ -34,7 +34,7 @@ public class MaterialStorage implements Serializable{
 			ms.put(blockID, ms.get(blockID)+amount);
 		}
 	}
-
+ 
 	public boolean useMaterial(int blockID, int amount){
 		if(ms.containsKey(blockID)){
 			if(ms.get(blockID)>amount){
