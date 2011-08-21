@@ -12,18 +12,18 @@ public class FileHandler {
 	//FileHandler-part
 	//global stuff
 	//ms = MaterialStorage
-	private static HashMap<Integer,MaterialStorage> ms = null;
+	private static HashMap<String,MaterialStorage> ms = null;
 	//Folder-variables
 	static String mainDirectory = "plugins/Construction Sites"; //sets the main directory for easy reference
 	static File Storage = new File(mainDirectory + File.separator + "Storage.dat");
 	//onEnable
 	public FileHandler(){
-		
+
 		new File(mainDirectory).mkdir();
 		if(Storage.exists()){
 			load();
 		}else{
-			ms = new HashMap<Integer,MaterialStorage>();
+			ms = new HashMap<String,MaterialStorage>();
 		}	
 	}
 	public void save(){
@@ -44,16 +44,22 @@ public class FileHandler {
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Storage));
 			Object result = ois.readObject();
 			//As long as it is not corrupted, we can just cast the object to hashmap
-			ms = (HashMap<Integer, MaterialStorage>)result;
+			ms = (HashMap<String, MaterialStorage>)result;
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}
 	//Here i will add your interface:
-	public MaterialStorage getMS(int ID){
-		if(ms.containsKey(ID)){
-		return ms.get(ID);
+	public MaterialStorage getStorage(String name){
+		if(ms.containsKey(name)){
+			return ms.get(name);
 		}
 		return null;
+	}
+
+	public void addStorage(String name){
+		if(!ms.containsKey(name)){
+			ms.put(name, new MaterialStorage());
+		}
 	}
 }
