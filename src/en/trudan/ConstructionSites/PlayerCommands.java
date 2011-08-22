@@ -13,12 +13,12 @@ import en.trudan.ConstructionSites.Data.ConstructionSite;
 import en.trudan.ConstructionSites.Data.FileHandler;
 
 public class PlayerCommands {
-	
+
 	public static ConstructionSites main = ConstructionSites.main;
 	public static FileHandler fh = main.getFH();
-	
+
 	public static void proccess(CommandSender sender, Command command, String commandLabel, String[] args) {
-		
+
 		String commandName = command.getName();
 		if(commandName.equalsIgnoreCase("construct")) {
 			if(args.length >= 1) {
@@ -26,24 +26,24 @@ public class PlayerCommands {
 				if(subcommandName.equalsIgnoreCase("trade")) {
 					if(args.length == 2) {
 						if(fh.getConstructionSite(args[1]) != null) {
-							
+
 							ConstructionSite site = fh.getConstructionSite(args[1]);
-							
+
 							// Trade items into the construction site
 							Player player = (Player) sender;
-							String siteName = args[1];
-							
+							String siteName = "Construction Site Traiding";
+
 							CustomInventory inv = new CustomInventory(54,siteName);
-							
-							
+							fh.addInventory(player, inv);
+
 							ItemStack[] stacks = site.getMaterialStorage().getChest();
-							
+
 							for(ItemStack stack : stacks) {
 								if(stack != null) {
 									inv.addItem(stack);
 								}
 							}
-							
+
 							((org.getspout.spoutapi.player.SpoutPlayer) player).openInventoryWindow((Inventory) inv);
 						}
 						else {
@@ -71,6 +71,28 @@ public class PlayerCommands {
 					else {
 						sender.sendMessage(ChatColor.GRAY+"Correct Usage: "+ChatColor.GREEN+"/construct create <Site name>");
 					}
+				}
+				else if(subcommandName.equalsIgnoreCase("stop")) {
+					if(args.length == 2) {
+						if(fh.getConstructionSite(args[1]) != null) {
+							Player player = (Player) sender;
+							ItemStack[] stacks = fh.getInventory(player).getContents();
+							for(ItemStack stack : stacks) {
+								if(stack != null) {
+									player.sendMessage("You traded with the ConstructionSite!");
+									ConstructionSite site = fh.getConstructionSite(args[1]);
+									site.getMaterialStorage().addMaterial(stack);
+								}
+							}
+						}
+					}
+
+				}
+				
+				else if(subcommandName.equalsIgnoreCase("add")) {
+					fh.getConstructionSite("Site").getMaterialStorage().addMaterial(1, 50);
+					sender.sendMessage("stone");
+
 				}
 			}
 		}

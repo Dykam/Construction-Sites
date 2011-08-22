@@ -25,6 +25,7 @@ public class ConstructionSites extends JavaPlugin {
 	public void onDisable() {
 		
 		log.info("[Construction Sites] Plugin has been disabled");
+		FH.save();
 		
 	}
 
