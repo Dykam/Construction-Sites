@@ -38,7 +38,9 @@ public class PlayerCommands {
 							ItemStack[] stacks = site.getMaterialStorage().getChest();
 							
 							for(ItemStack stack : stacks) {
-								inv.addItem(stack);
+								if(stack != null) {
+									inv.addItem(stack);
+								}
 							}
 							
 							((org.getspout.spoutapi.player.SpoutPlayer) player).openInventoryWindow((Inventory) inv);
@@ -49,6 +51,24 @@ public class PlayerCommands {
 					}
 					else {
 						sender.sendMessage(ChatColor.GRAY+"Correct Usage: "+ChatColor.GREEN+"/construct trade <Site name>");
+					}
+				}
+				else if(subcommandName.equalsIgnoreCase("create")) {
+					if(args.length == 2) {
+						if(fh.getConstructionSite(args[1]) == null) {
+							if(fh.addConstructionSite(args[1])) {
+								sender.sendMessage(ChatColor.GREEN+"Construction site '"+args[1]+"' has been created.");
+							}
+							else {
+								sender.sendMessage(ChatColor.RED+"There was an error whilst trying to create this construction site.");
+							}
+						}
+						else {
+							sender.sendMessage(ChatColor.RED+"That construction site already exists!");
+						}
+					}
+					else {
+						sender.sendMessage(ChatColor.GRAY+"Correct Usage: "+ChatColor.GREEN+"/construct create <Site name>");
 					}
 				}
 			}
