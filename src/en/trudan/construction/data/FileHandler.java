@@ -12,8 +12,8 @@ public class FileHandler {
 
 	//FileHandler-part
 	//global stuff
-	//ms = MaterialStorage
-	private static HashMap<String,MaterialStorage> ms = null;
+	//cs = ConstructionSite
+	private static HashMap<String,ConstructionSite> cs = null;
 	private static Properties pl = null;
 	//Folder-variables
 	static String mainDirectory = "plugins/Construction Sites"; //sets the main directory for easy reference
@@ -26,7 +26,7 @@ public class FileHandler {
 		if(Storage.exists()){
 			load();
 		}else{
-			ms = new HashMap<String,MaterialStorage>();
+			cs = new HashMap<String,ConstructionSite>();
 		}	
 		if(Prices.exists()){
 			load();
@@ -37,7 +37,7 @@ public class FileHandler {
 	public void save(){
 		try{
 			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(Storage));
-			oos.writeObject(ms);
+			oos.writeObject(cs);
 			oos.flush();
 			oos.close();
 			oos = new ObjectOutputStream(new FileOutputStream(Prices));
@@ -56,7 +56,7 @@ public class FileHandler {
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Storage));
 			Object result = ois.readObject();
 			//As long as it is not corrupted, we can just cast the object to hashmap
-			ms = (HashMap<String, MaterialStorage>)result;
+			cs = (HashMap<String, ConstructionSite>)result;
 			ois = new ObjectInputStream(new FileInputStream(Prices));
 			pl.load(ois);
 		}catch(Exception e){
@@ -64,16 +64,16 @@ public class FileHandler {
 		}
 	}
 	//Here i will add your interface:
-	public MaterialStorage getStorage(String name){
-		if(ms.containsKey(name)){
-			return ms.get(name);
+	public ConstructionSite getConstructionSite(String name){
+		if(cs.containsKey(name)){
+			return cs.get(name);
 		}
 		return null;
 	}
 
-	public void addStorage(String name){
-		if(!ms.containsKey(name)){
-			ms.put(name, new MaterialStorage());
+	public void addConstructionSite(String name){
+		if(!cs.containsKey(name)){
+			cs.put(name, new ConstructionSite());
 		}
 	}
 	
