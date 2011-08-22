@@ -16,7 +16,7 @@ public class FileHandler {
 	private static HashMap<String,ConstructionSite> cs = null;
 	private static Properties pl = null;
 	//Folder-variables
-	static String mainDirectory = "plugins/Construction Sites"; //sets the main directory for easy reference
+	static String mainDirectory = "plugins/ConstructionSites"; //sets the main directory for easy reference
 	static File Storage = new File(mainDirectory + File.separator + "Storage.dat");
 	static File Prices = new File(mainDirectory + File.separator + "Prices.prop");
 	//onEnable

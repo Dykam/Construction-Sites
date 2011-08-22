@@ -11,6 +11,7 @@ public class MaterialStorage implements Serializable {
 
 	private static final long serialVersionUID = -2568572539544142880L;
 	private static HashMap<Blockdata, Integer> ms = null;
+	private boolean inuse = false;
 
 	public MaterialStorage() {
 		ms = new HashMap<Blockdata, Integer>();
@@ -144,31 +145,33 @@ public class MaterialStorage implements Serializable {
 	}
 
 	public ItemStack[] getChest() {
-
-		int i = 0;
-		Set<Blockdata> items = ms.keySet();
-		ItemStack[] chest = new ItemStack[54];
-		for (Blockdata blockdata : items) {
-			int amount = ms.get(blockdata);
-			while (amount != 0) {
-				if (i < 54) {
-					if (amount >= 64) {
-						amount -= 64;
-						ItemStack is = new ItemStack(blockdata.getBlockvalue(),
-								64, blockdata.getData(), blockdata.getData());
-						chest[i] = is;
-						i++;
-					} else if (amount >= 1 && amount <= 64) {
-						ItemStack is = new ItemStack(blockdata.getBlockvalue(),
-								amount, blockdata.getData(), blockdata.getData());
-						chest[i] = is;
-						amount = 0;
-						i++;
+		if(!inuse){
+			int i = 0;
+			Set<Blockdata> items = ms.keySet();
+			ItemStack[] chest = new ItemStack[54];
+			for (Blockdata blockdata : items) {
+				int amount = ms.get(blockdata);
+				while (amount != 0) {
+					if (i < 54) {
+						if (amount >= 64) {
+							amount -= 64;
+							ItemStack is = new ItemStack(blockdata.getBlockvalue(),
+									64, blockdata.getData(), blockdata.getData());
+							chest[i] = is;
+							i++;
+						} else if (amount >= 1 && amount <= 64) {
+							ItemStack is = new ItemStack(blockdata.getBlockvalue(),
+									amount, blockdata.getData(), blockdata.getData());
+							chest[i] = is;
+							amount = 0;
+							i++;
+						}
 					}
 				}
 			}
+			return chest;
 		}
-		return chest;
+		return new ItemStack[0];
 	}
 
 }

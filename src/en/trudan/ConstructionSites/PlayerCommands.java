@@ -31,9 +31,10 @@ public class PlayerCommands {
 							
 							// Trade items into the construction site
 							Player player = (Player) sender;
-							String siteName = "Construction Site Materials";
+							String siteName = args[1];
 							
 							CustomInventory inv = new CustomInventory(54,siteName);
+							
 							
 							ItemStack[] stacks = site.getMaterialStorage().getChest();
 							
