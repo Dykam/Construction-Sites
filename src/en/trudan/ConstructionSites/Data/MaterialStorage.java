@@ -76,6 +76,10 @@ public class MaterialStorage implements Serializable{
 	
 	public ItemStack[] getChest(){
 		
+		int i = 0;
+		for (iterable_type iterable_element : iterable) {
+			
+		}
 		MaterialData mat = new MaterialData(1, (byte) 0);
 		ItemStack is = new ItemStack(type, amount, damage, data)
 		
