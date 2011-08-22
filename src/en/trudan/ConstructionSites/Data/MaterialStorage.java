@@ -76,6 +76,65 @@ public class MaterialStorage implements Serializable{
 		return false;
 	}
 	
+	//1
+	public int getAmought(int blockID, byte data){
+		if(ms.containsKey(new Blockdata(blockID, data))){
+			return ms.get(new Blockdata(blockID, data));
+		}
+		return 0;
+	}
+
+	public Boolean hasMaterial(int blockID, int amount, byte data){
+		if(ms.containsKey(new Blockdata(blockID, data))){
+			if(ms.get(new Blockdata(blockID, data))>=amount){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public Boolean hasMaterial(Material material, int amount, byte data){
+		if(ms.containsKey(new Blockdata(material.getId()))){
+			if(ms.get(new Blockdata(material.getId(), data))>=amount){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void addMaterial(int blockID, int amount, byte data){
+		if(ms.containsKey(new Blockdata(blockID, data))){
+			ms.put(new Blockdata(blockID, data), ms.get(blockID, data)+amount);
+		}
+	}
+	
+	public void addMaterial(Material material, int amount, byte data){
+		if(ms.containsKey(new Blockdata(material.getId(), data))){
+			ms.put(new Blockdata(material.getId(), data), ms.get(material.getId(), data)+amount);
+		}
+	}
+ 
+	public boolean useMaterial(int blockID, int amount, byte data){
+		if(ms.containsKey(new Blockdata(blockID, data))){
+			if(ms.get(new Blockdata(blockID, data))>amount){
+				ms.put(new Blockdata(blockID, data), ms.get(new Blockdata(blockID, data))-amount);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean useMaterial(Material material, int amount, byte data){
+		if(ms.containsKey(new Blockdata(material.getId()))){
+			if(ms.get(new Blockdata(material.getId(), data))>amount){
+				ms.put(new Blockdata(material.getId(), data), ms.get(new Blockdata(material.getId(), data))-amount);
+				return true;
+			}
+		}
+		return false;
+	}
+	//2
+	
 	public ItemStack[] getChest(){
 		
 		int i = 0;
