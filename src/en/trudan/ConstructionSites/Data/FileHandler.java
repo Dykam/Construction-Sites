@@ -13,7 +13,7 @@ public class FileHandler {
 	//FileHandler-part
 	//global stuff
 	//cs = ConstructionSite
-	private static HashMap<String,MaterialStorage> cs = null;
+	private static HashMap<String,ConstructionSite> cs = null;
 	private static Properties pl = null;
 	//Folder-variables
 	static String mainDirectory = "plugins/Construction Sites"; //sets the main directory for easy reference
@@ -26,7 +26,7 @@ public class FileHandler {
 		if(Storage.exists()){
 			load();
 		}else{
-			cs = new HashMap<String,MaterialStorage>();
+			cs = new HashMap<String,ConstructionSite>();
 		}	
 		if(Prices.exists()){
 			load();
@@ -56,7 +56,7 @@ public class FileHandler {
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Storage));
 			Object result = ois.readObject();
 			//As long as it is not corrupted, we can just cast the object to hashmap
-			cs = (HashMap<String, MaterialStorage>)result;
+			cs = (HashMap<String, ConstructionSite>)result;
 			ois = new ObjectInputStream(new FileInputStream(Prices));
 			pl.load(ois);
 		}catch(Exception e){
@@ -64,7 +64,7 @@ public class FileHandler {
 		}
 	}
 	//Here i will add your interface:
-	public MaterialStorage getConstructionSite(String name){
+	public ConstructionSite getConstructionSite(String name){
 		if(cs.containsKey(name)){
 			return cs.get(name);
 		}
@@ -73,7 +73,7 @@ public class FileHandler {
 
 	public void addConstructionSite(String name){
 		if(!cs.containsKey(name)){
-			cs.put(name, new MaterialStorage());
+			cs.put(name, new ConstructionSite());
 		}
 	}
 	
