@@ -6,10 +6,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.getspout.spout.inventory.CustomInventory;
 
+import en.trudan.ConstructionSites.Data.ConstructionSite;
 import en.trudan.ConstructionSites.Data.FileHandler;
-import en.trudan.ConstructionSites.Data.MaterialStorage;
 
 public class PlayerCommands {
 	
@@ -26,7 +27,7 @@ public class PlayerCommands {
 					if(args.length == 2) {
 						if(fh.getConstructionSite(args[1]) != null) {
 							
-							MaterialStorage site = fh.getConstructionSite(args[1]).getMaterialStorage();
+							ConstructionSite site = fh.getConstructionSite(args[1]);
 							
 							// Trade items into the construction site
 							Player player = (Player) sender;
@@ -34,7 +35,11 @@ public class PlayerCommands {
 							
 							CustomInventory inv = new CustomInventory(54,siteName);
 							
-							inv.setContents(site.getInv(siteName));
+							ItemStack[] stacks = site.getChest();
+							
+							for(ItemStack stack : stacks) {
+								inv.addItem(stack);
+							}
 							
 							((org.getspout.spoutapi.player.SpoutPlayer) player).openInventoryWindow((Inventory) inv);
 						}
