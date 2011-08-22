@@ -1,4 +1,4 @@
-package en.trudan.construction;
+package en.trudan.ConstructionSites;
 
 public class ConstructionThread implements Runnable {
 

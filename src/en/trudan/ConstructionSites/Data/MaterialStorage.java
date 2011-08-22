@@ -1,13 +1,18 @@
-package en.trudan.construction.data;
+package en.trudan.ConstructionSites.Data;
 
-import java.io.Serializable;
 import java.util.HashMap;
+import en.trudan.ConstructionSites.ConstructionSites;
 
-public class MaterialStorage implements Serializable{
+public class MaterialStorage{
 
-	private static final long serialVersionUID = -2568572539544142880L;
+	public ConstructionSites plugin;
+	
+    public MaterialStorage(ConstructionSites instance)
+    {
+        plugin = instance;
+    }
+	
 	private static HashMap<Integer,Integer> ms = null;
-
 
 	public MaterialStorage() {
 		ms = new HashMap<Integer,Integer>();	
