@@ -75,10 +75,12 @@ public class FileHandler {
 		return cs.containsKey(name);
 	}
 
-	public void addConstructionSite(String name){
+	public Boolean addConstructionSite(String name){
 		if(!cs.containsKey(name)){
 			cs.put(name, new ConstructionSite());
+			return true;
 		}
+		return false;
 	}
 	
 	public int getPrice(int blockID){
