@@ -5,9 +5,13 @@ import java.util.logging.Logger;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event.Priority;
+import org.bukkit.event.Event.Type;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import en.trudan.ConstructionSites.Data.FileHandler;
+import en.trudan.ConstructionSites.Listeners.CSInventoryListener;
 
 
 public class ConstructionSites extends JavaPlugin {
@@ -30,6 +34,10 @@ public class ConstructionSites extends JavaPlugin {
 		log.info("[Construction Sites] Loading data");
 		FH = new FileHandler();
 		//new DataBackupTimer();
+		
+		final PluginManager pluginManager = getServer().getPluginManager();
+		final CSInventoryListener invListener = new CSInventoryListener();
+		pluginManager.registerEvent(Type.INVENTORY_CLOSE, invListener, Priority.High, this);
 		log.info("[Construction Sites] Plugin has been enabled");
 		
 	}
