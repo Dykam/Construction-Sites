@@ -13,8 +13,9 @@ public class CSInventoryListener extends InventoryListener {
 	public static FileHandler fh = main.getFH();
 	public void onInventoryClose(InventoryCloseEvent event) {
 		
-		if (fh.hasConstructionSite(event.getInventory().getName())){
+		//if (fh.hasConstructionSite(event.getInventory().getName())){
 			ItemStack[] stacks = event.getInventory().getContents();
+			event.getPlayer().sendMessage(event.getInventory().getName());
 			
 			for(ItemStack stack : stacks) {
 				if(stack != null) {
@@ -24,7 +25,7 @@ public class CSInventoryListener extends InventoryListener {
 				}
 			}
 			
-		}
+		//}
 		
 	}
 	
