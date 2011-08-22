@@ -1,18 +1,13 @@
 package en.trudan.ConstructionSites;
 
-import java.util.HashMap;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 import org.getspout.spout.inventory.CustomInventory;
 
 public class PlayerCommands {
-
-	public HashMap<String, ItemStack[]> inventories = new HashMap<String, ItemStack[]>();
-	public HashMap<String, Inventory> openedInventories = new HashMap<String, Inventory>();
 	
 	public static void proccess(CommandSender sender, Command command, String commandLabel, String[] args) {
 		
@@ -34,26 +29,4 @@ public class PlayerCommands {
 			}
 		}
 	}
-	
-	public void loadInventory(Player player) {
-		
-		CustomInventory inv = new CustomInventory(54, "Construction Site");
-		boolean bool = true;
-		if (bool == true) {
-			Integer i = 0;
-			for (i = 0; i < 54; i++) {
-			ItemStack item = new ItemStack(0, 0);
-			item.setAmount(64);
-			item.setTypeId(5);
-			Integer durability = 0;
-			item.setDurability(Short.parseShort(durability.toString()));
-			inv.setItem(i, item);
-			}
-		}
-		this.inventories.put(player.getName(), inv.getContents());
-	}
-	
-	public void updateInventory(Player player, ItemStack[] is) {
-		this.inventories.put(player.getName(), is);
-		}
 }
