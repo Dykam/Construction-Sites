@@ -8,11 +8,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import en.trudan.ConstructionSites.Data.FileHandler;
+import en.trudan.sdhplugin.SDHPlayerBackupTimer;
 
 public class ConstructionSites extends JavaPlugin {
 
 	Logger log = Logger.getLogger("Minecraft");
-	Runnable runnable = new ConstructionThread();
 	Thread thread = new Thread(runnable);
 	private static FileHandler FH = null;
 	public static ConstructionSites main;
@@ -29,8 +29,7 @@ public class ConstructionSites extends JavaPlugin {
 		ConstructionSites.main = this;
 		log.info("[Construction Sites] Loading data");
 		FH = new FileHandler();
-		log.info("[Construction Sites] Starting new thread to reduce lag");
-		thread.start();
+		new DataBackupTimer();
 		log.info("[Construction Sites] Plugin has been enabled");
 		
 	}
