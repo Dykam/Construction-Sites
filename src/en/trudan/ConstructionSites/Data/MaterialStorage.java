@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.material.MaterialData;
 
 public class MaterialStorage implements Serializable{
 
@@ -70,6 +72,14 @@ public class MaterialStorage implements Serializable{
 			}
 		}
 		return false;
+	}
+	
+	public ItemStack[] getChest(){
+		
+		MaterialData mat = new MaterialData(1, (byte) 0);
+		ItemStack is = new ItemStack(type, amount, damage, data)
+		
+		return null;
 	}
 
 }
