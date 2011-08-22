@@ -35,7 +35,7 @@ public class PlayerCommands {
 							
 							CustomInventory inv = new CustomInventory(54,siteName);
 							
-							ItemStack[] stacks = site.getChest();
+							ItemStack[] stacks = site.getMaterialStorage().getChest();
 							
 							for(ItemStack stack : stacks) {
 								inv.addItem(stack);
