@@ -1,5 +1,5 @@
 name: Construction
-main: en.trudan.construction.Main
+main: en.trudan.construction.ConstructionSites
 description: Build buildings from pre made files, block by block
 authors: [TruDan]
 commands:
