@@ -18,6 +18,7 @@ public class CSInventoryListener extends InventoryListener {
 			
 			for(ItemStack stack : stacks) {
 				if(stack != null) {
+					event.getPlayer().sendMessage("You traded with the ConstructionSite!");
 					ConstructionSite site = fh.getConstructionSite(event.getInventory().getName());
 					site.getMaterialStorage().addMaterial(stack);
 				}
