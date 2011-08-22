@@ -12,7 +12,7 @@ public class CSInventoryListener extends InventoryListener {
 	public static ConstructionSites main = ConstructionSites.main;
 	public static FileHandler fh = main.getFH();
 	public void onInventoryClose(InventoryCloseEvent event) {
-		
+		System.out.println("An inventory was closed by: " + event.getPlayer().getDisplayName()+ "|" + event.getInventory().getName());
 		//if (fh.hasConstructionSite(event.getInventory().getName())){
 			ItemStack[] stacks = event.getInventory().getContents();
 			event.getPlayer().sendMessage(event.getInventory().getName());
