@@ -104,13 +104,13 @@ public class MaterialStorage implements Serializable{
 
 	public void addMaterial(int blockID, int amount, byte data){
 		if(ms.containsKey(new Blockdata(blockID, data))){
-			ms.put(new Blockdata(blockID, data), ms.get(blockID, data)+amount);
+			ms.put(new Blockdata(blockID, data), ms.get(new Blockdata(blockID, data))+amount);
 		}
 	}
 	
 	public void addMaterial(Material material, int amount, byte data){
 		if(ms.containsKey(new Blockdata(material.getId(), data))){
-			ms.put(new Blockdata(material.getId(), data), ms.get(material.getId(), data)+amount);
+			ms.put(new Blockdata(material.getId(), data), ms.get(new Blockdata(material.getId(), data))+amount);
 		}
 	}
  
