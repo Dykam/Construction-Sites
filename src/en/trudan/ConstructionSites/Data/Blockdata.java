@@ -8,7 +8,7 @@ public class Blockdata implements Serializable{
 
 	private static final long serialVersionUID = -7765686518366269441L;
 	private int blockvalue = 0;
-	private byte data = 0x0000;
+	private Byte data = 0x0000;
 
 	public Blockdata(){
 

@@ -157,12 +157,12 @@ public class MaterialStorage implements Serializable {
 					if (amount >= 64) {
 						amount -= 64;
 						ItemStack is = new ItemStack(blockdata.getBlockvalue(),
-								64, (short) 0, blockdata.getData());
+								64, blockdata.getData(), blockdata.getData());
 						chest.add(is);
 						i++;
 					} else if (amount >= 1 && amount <= 64) {
 						ItemStack is = new ItemStack(blockdata.getBlockvalue(),
-								amount, (short) 0, blockdata.getData());
+								amount, blockdata.getData(), blockdata.getData());
 						chest.add(is);
 						amount = 0;
 						i++;
