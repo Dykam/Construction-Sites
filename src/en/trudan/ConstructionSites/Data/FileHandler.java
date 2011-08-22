@@ -70,6 +70,10 @@ public class FileHandler {
 		}
 		return null;
 	}
+	
+	public Boolean hasConstructionSite(String name){
+		return cs.containsKey(name);
+	}
 
 	public void addConstructionSite(String name){
 		if(!cs.containsKey(name)){
