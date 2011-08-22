@@ -70,11 +70,17 @@ public class FileHandler {
 		}
 		return null;
 	}
+	
+	public Boolean hasConstructionSite(String name){
+		return cs.containsKey(name);
+	}
 
-	public void addConstructionSite(String name){
+	public Boolean addConstructionSite(String name){
 		if(!cs.containsKey(name)){
 			cs.put(name, new ConstructionSite());
+			return true;
 		}
+		return false;
 	}
 	
 	public int getPrice(int blockID){
