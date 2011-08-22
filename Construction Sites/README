@@ -1,0 +1,22 @@
+I was thinking it would be neat to be able to set something up as a construction site, and it would purchase the materials it needs to build structures. The plugin could read structure plans from a folder within the plugin folder, and more designs could be made and put in there.
+
+The possibilities with a plugin like this are pretty broad. For example, it can help to spur the economy, because suddenly players will have a frequent buyer for their cobblestone, or glass. Prices of materials could be set in the config file.
+With citizens, it could hook in and there could be "builder" citizens which appear by command, or randomly. Who stand where they want to build, or walk around.
+
+One could even make new plans by setting signs on around the four corners of a building, at which point, anything (aside from air and cloud) from the ground up, would be considered a structure, and a structure file would be created and given whatever the sign name says. For example, [npconstruct] on the first line, and (yourdesignnamehere) on the second line. np for non player.
+
+The plugin could also be used by players, they could see a list of structure names, and make their own autobuild sites, by placing a sign down, and putting in [pconstruct] p for player construct. The plugin would do a quick check to make sure there are no other blocks in the way of its creation. Air and cloud would not count.
+
+If another player sold all the materials to this shop, the building itself would still only build block by block, not instantly. Though, this could be made configurable, just like creeper heal and all that.
+
+Players could even make their construct plans cost money to use, using iconomy or another such economy plugin.
+
+The plugin could hook into a market app like showcase, and provide all the materials that the waiting construction project requires. That way, the developer really only needs to make a simple application that can take a plan, and build it block by block, while also accepting materials from multiple users, through right click interactions. Hooking into showcase, and adding the "construct" shop type, then being asked the name of the construct, (here the construct app will send back a true or false depending on whether it requires the material that is being used to shift+right click the shop.) If it comes back true, it will ask you price, then hitting enter will complete the shop. At that point, the construct part will have set the maximum number of that material for the shop to buy. Once that material need is met, it could remove the shop itself.
+
+When a player browses the constructs available, they won't know what they look like, but by using a command like /construct plan (name) it would list the materials needed, price, and height/width (perhaps). If construct is used to make a building, everything would be copied, even the sign (though perhaps without the commands in [] on it), so in passing a building, people could see the building and buy it by name if they wanted to. Great extra source of income, if your building is nice, you can ask more for the plans.
+
+Configuration options could be set, to put a price on posting a construct plan for sale. Add to that the showcase option to set a price on material shops, and you've got some economy happening.
+
+And there's my idea, in a nutshell. Albeit a rather large nutshell.
+
+Most of the thoughts expressed, are coming as I write, so if it's a little disorderly, you know why.
