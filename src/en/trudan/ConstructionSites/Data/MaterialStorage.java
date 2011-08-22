@@ -1,11 +1,13 @@
 package en.trudan.ConstructionSites.Data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.material.MaterialData;
 
 public class MaterialStorage implements Serializable{
 
@@ -77,13 +79,27 @@ public class MaterialStorage implements Serializable{
 	public ItemStack[] getChest(){
 		
 		int i = 0;
-		for (iterable_type iterable_element : iterable) {
-			
-		}
-		MaterialData mat = new MaterialData(1, (byte) 0);
-		ItemStack is = new ItemStack(type, amount, damage, data)
-		
-		return null;
+		Set<Blockdata> items = ms.keySet();
+		List<ItemStack> chest = new ArrayList<ItemStack>();
+		for (Blockdata blockdata : items) {
+			int amount = ms.get(blockdata);
+			while(amount != 0){
+				if (i < 54){
+					if(amount >= 64){
+						amount -= 64;
+						ItemStack is = new ItemStack(blockdata.getBlockvalue(), 64, (short) 0, blockdata.getData());
+						chest.add(is);
+						i++;
+					}else if(amount >= 1 && amount <= 64){
+						ItemStack is = new ItemStack(blockdata.getBlockvalue(), amount, (short) 0, blockdata.getData());
+						chest.add(is);
+						amount = 0;
+						i++;
+					}
+				}
+			}
+		}	
+		return (ItemStack[]) chest.toArray();
 	}
 
 }

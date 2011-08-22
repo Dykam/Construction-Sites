@@ -18,8 +18,5 @@ public class ConstructionSite implements Serializable{
 	public MaterialStorage getMaterialStorage(){
 		return ms;
 	}
-	
-	public ItemStack[] getChest(){
-		return ms.getChest();
-	}
+
 }
