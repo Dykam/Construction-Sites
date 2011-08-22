@@ -15,6 +15,7 @@ public class ConstructionSites extends JavaPlugin {
 	Runnable runnable = new ConstructionThread();
 	Thread thread = new Thread(runnable);
 	private static FileHandler FH = null;
+	public static ConstructionSites main;
 	
 	
 	public void onDisable() {
@@ -25,6 +26,7 @@ public class ConstructionSites extends JavaPlugin {
 
 	public void onEnable() {
 		log.info("[Construction Sites] Plugin is starting up");
+		ConstructionSites.main = this;
 		log.info("[Construction Sites] Loading data");
 		FH = new FileHandler();
 		log.info("[Construction Sites] Starting new thread to reduce lag");

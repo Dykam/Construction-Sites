@@ -1,7 +1,8 @@
 name: Construction
-main: en.trudan.construction.ConstructionSites
+main: en.trudan.ConstructionSites.ConstructionSites
 description: Build buildings from pre made files, block by block
 authors: [TruDan]
+version: "0.1"
 commands:
   construct:
      description: The main commands for Construction
