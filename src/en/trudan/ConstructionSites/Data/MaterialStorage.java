@@ -161,13 +161,13 @@ public class MaterialStorage implements Serializable {
 							is.getAmount());
 				}
 			}else{
-			if (ms.containsKey(new Blockdata(is.getTypeId(), is.getData().getData()))) {
-				ms.put(new Blockdata(is.getTypeId(), is.getData().getData()),
-						ms.get(new Blockdata(is.getTypeId(), is.getData().getData())) + is.getAmount());
-			}else{
-				ms.put(new Blockdata(is.getTypeId(), is.getData().getData()),
-						is.getAmount());
-			}
+				if (ms.containsKey(new Blockdata(is.getTypeId(), is.getData().getData()))) {
+					ms.put(new Blockdata(is.getTypeId(), is.getData().getData()),
+							ms.get(new Blockdata(is.getTypeId(), is.getData().getData())) + is.getAmount());
+				}else{
+					ms.put(new Blockdata(is.getTypeId(), is.getData().getData()),
+							is.getAmount());
+				}
 			}
 		}
 	}

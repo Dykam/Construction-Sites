@@ -8,16 +8,12 @@ import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Properties;
 
-import org.bukkit.entity.Player;
-import org.getspout.spout.inventory.CustomInventory;
-
 public class FileHandler {
 
 	//FileHandler-part
 	//global stuff
 	//cs = ConstructionSite
 	private static HashMap<String,ConstructionSite> cs = null;
-	private static HashMap<Player,CustomInventory> pi = null;
 	private static Properties pl = null;
 	//Folder-variables
 	static String mainDirectory = "plugins/ConstructionSites"; //sets the main directory for easy reference
@@ -37,7 +33,6 @@ public class FileHandler {
 		}else{
 			pl = new Properties();
 		}
-		pi = new HashMap<Player,CustomInventory>();
 	}
 	public void save(){
 		try{
@@ -98,18 +93,5 @@ public class FileHandler {
 
 		pl.setProperty("" + blockID, "" + price);
 
-	}
-
-	public void addInventory(Player player ,CustomInventory inv){
-		if(pi.containsKey(player)){
-			pi.put(player, inv);
-		}
-	}
-
-	public CustomInventory getInventory(Player player){
-		if(pi.containsKey(player)){
-			return pi.get(player);
-		}
-		return null;
 	}
 }

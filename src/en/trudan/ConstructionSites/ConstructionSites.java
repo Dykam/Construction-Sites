@@ -55,7 +55,7 @@ public class ConstructionSites extends JavaPlugin {
 		return true;
 	}
 	
-	public FileHandler getFH(){
+	public static FileHandler getFH(){
 		return FH;
 	}
 
