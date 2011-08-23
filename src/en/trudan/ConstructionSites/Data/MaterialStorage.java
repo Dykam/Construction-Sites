@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Set;
 
-import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 public class MaterialStorage implements Serializable {
@@ -34,47 +33,10 @@ public class MaterialStorage implements Serializable {
 		return false;
 	}
 
-	public Boolean hasMaterial(Material material, int amount) {
-		if (ms.containsKey(material.getId())) {
-			if (ms.get(material.getId()) >= amount) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public void addMaterial(int blockID, int amount) {
-		if (ms.containsKey(new Blockdata(blockID))) {
-			ms.put(new Blockdata(blockID), ms.get(blockID) + amount);
-		}else{
-			ms.put(new Blockdata(blockID), amount);
-		}
-	}
-
-	public void addMaterial(Material material, int amount) {
-		if (ms.containsKey(new Blockdata(material.getId()))) {
-			ms.put(new Blockdata(material.getId()), ms.get(material.getId())
-					+ amount);
-		}else{
-			ms.put(new Blockdata(material.getId()), amount);
-		}
-	}
-
 	public boolean useMaterial(int blockID, int amount) {
 		if (ms.containsKey(new Blockdata(blockID))) {
 			if (ms.get(blockID) > amount) {
 				ms.put(new Blockdata(blockID), ms.get(blockID) - amount);
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public boolean useMaterial(Material material, int amount) {
-		if (ms.containsKey(new Blockdata(material.getId()))) {
-			if (ms.get(material.getId()) > amount) {
-				ms.put(new Blockdata(material.getId()),
-						ms.get(material.getId()) - amount);
 				return true;
 			}
 		}
@@ -99,51 +61,11 @@ public class MaterialStorage implements Serializable {
 		return false;
 	}
 
-	public Boolean hasMaterial(Material material, int amount, byte data) {
-		if (ms.containsKey(new Blockdata(material.getId()))) {
-			if (ms.get(new Blockdata(material.getId(), data)) >= amount) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public void addMaterial(int blockID, int amount, byte data) {
-		if (ms.containsKey(new Blockdata(blockID, data))) {
-			ms.put(new Blockdata(blockID, data),
-					ms.get(new Blockdata(blockID, data)) + amount);
-		}else{
-			ms.put(new Blockdata(blockID, data),
-					amount);
-		}
-	}
-
-	public void addMaterial(Material material, int amount, byte data) {
-		if (ms.containsKey(new Blockdata(material.getId(), data))) {
-			ms.put(new Blockdata(material.getId(), data),
-					ms.get(new Blockdata(material.getId(), data)) + amount);
-		}else{
-			ms.put(new Blockdata(material.getId(), data),
-					amount);
-		}
-	}
-
 	public boolean useMaterial(int blockID, int amount, byte data) {
 		if (ms.containsKey(new Blockdata(blockID, data))) {
 			if (ms.get(new Blockdata(blockID, data)) > amount) {
 				ms.put(new Blockdata(blockID, data),
 						ms.get(new Blockdata(blockID, data)) - amount);
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public boolean useMaterial(Material material, int amount, byte data) {
-		if (ms.containsKey(new Blockdata(material.getId()))) {
-			if (ms.get(new Blockdata(material.getId(), data)) > amount) {
-				ms.put(new Blockdata(material.getId(), data),
-						ms.get(new Blockdata(material.getId(), data)) - amount);
 				return true;
 			}
 		}
