@@ -25,7 +25,7 @@ public class ConstructionSites extends JavaPlugin {
 	public void onDisable() {
 		
 		log.info("[Construction Sites] Plugin has been disabled");
-		FH.save();
+		//FH.save();
 		
 	}
 
@@ -38,7 +38,7 @@ public class ConstructionSites extends JavaPlugin {
 		
 		final PluginManager pluginManager = getServer().getPluginManager();
 		final CSInventoryListener invListener = new CSInventoryListener();
-		pluginManager.registerEvent(Type.INVENTORY_CLOSE, invListener, Priority.High, this);
+		pluginManager.registerEvent(Type.CUSTOM_EVENT, invListener, Priority.High, this);
 		log.info("[Construction Sites] Plugin has been enabled");
 		
 	}

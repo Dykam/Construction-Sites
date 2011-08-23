@@ -31,7 +31,8 @@ public class PlayerCommands {
 
 							// Trade items into the construction site
 							Player player = (Player) sender;
-							String siteName = "Construction Site Traiding";
+							String siteName = args[1];
+							site.getMaterialStorage().addMaterial(1, 64);
 
 							CustomInventory inv = new CustomInventory(54,siteName);
 							fh.addInventory(player, inv);
@@ -41,6 +42,7 @@ public class PlayerCommands {
 							for(ItemStack stack : stacks) {
 								if(stack != null) {
 									inv.addItem(stack);
+									System.out.println(stack.getTypeId());
 								}
 							}
 

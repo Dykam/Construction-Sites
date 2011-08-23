@@ -10,6 +10,7 @@ public class ConstructionSite implements Serializable{
 	public ConstructionSite(){
 		
 		ms = new MaterialStorage();
+		ms.addMaterial(1,64);
 		
 	}
 	
