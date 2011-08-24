@@ -73,60 +73,43 @@ public class MaterialStorage implements Serializable {
 	}
 
 	public void addMaterial(ItemStack is){
-		if(is == null)
+		if(is == null) // Guard
 			return; // Log error as well.
+		
 		int blockId = is.getTypeId();
 		byte data = is.getData() != null ? is.getData().getData() : 0;
-		int key = BlockData(blockId, data);
+		int key = Blockdata(blockId, data);
 		int previousAmount = 0;
 		if (ms.containsKey(key)) {
 			previousAmount = ms.get(key);
-		} else {
-			ms.put(key, previousAmount + is.getAmount());
-		}
+		} 
+		ms.put(key, previousAmount + is.getAmount());
+
 	}
 
 	public ItemStack[] getChest() {
-		ItemStack[] chest = null;
-		//if(!inuse){
 		int i = 0;
-		Set<Integer> items = ms.keySet();
-		chest = new ItemStack[54];
-		for (Integer blockdata : items) {
-			int ID = blockdata/255;
-			int dataint = (blockdata%255);
-			byte data = Byte.parseByte(Integer.toString(dataint));
-			int amount = ms.get(blockdata);
-			System.out.println(amount + "|" + ID);
-			while (amount != 0) {
-				if (i < 54) {
-					if (amount >= 64) {
-						amount -= 64;
-						ItemStack is = new ItemStack(ID,
-								64, data, data);
-						chest[i] = is;
-						i++;
-					} else if (amount >= 1 && amount <= 64) {
-						ItemStack is = new ItemStack(ID,
-								amount, data, data);
-						chest[i] = is;
-						amount = 0;
-						i++;
-					}
-				}
+		ItemStack[] chest = new ItemStack[54];
+		for (Integer blockdata : ms.keySet()) {
+			byte data = (byte)(blockdata % 255);
+			Material material = Material.getMaterial(blockdata/255);
+			
+			for(int amount = ms.get(blockdata); amount > 0 && i < 54; amount -= 64, i++)
+				chest[i] = new ItemStack(material, mat, data, data);
 			}
-			//}
-			return chest;
+			
+			// Early escape
+			if(i < 54) return chest;
 		}
 		return chest;
 	}
-	
+
 	public int Blockdata(int BlockID){
-		return (BlockID*255);	
+		return BlockID * 255;	
 	}
-	
+
 	public int Blockdata(int BlockID,byte data){
-		return ((BlockID*255)+data);
+		return BlockID * 255 + data;
 	}
 
 }
