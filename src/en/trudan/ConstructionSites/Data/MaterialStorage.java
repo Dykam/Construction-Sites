@@ -94,7 +94,7 @@ public class MaterialStorage implements Serializable {
 			byte data = (byte)(blockdata % 255);
 			Material material = Material.getMaterial(blockdata/255);
 			
-			for(int amount = ms.get(blockdata); amount > 0 && i < 54; amount -= 64, i++)
+			for(int amount = ms.get(blockdata); amount > 0 && i < 54; amount -= material.getMaxStackSize(), i++)
 				chest[i] = new ItemStack(material, mat, data, data);
 			}
 			
