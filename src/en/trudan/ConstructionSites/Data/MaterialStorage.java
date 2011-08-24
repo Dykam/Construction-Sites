@@ -73,24 +73,16 @@ public class MaterialStorage implements Serializable {
 	}
 
 	public void addMaterial(ItemStack is){
-		if(is != null){
-			if(is.getData() == null){
-				if (ms.containsKey(Blockdata(is.getTypeId()))) {
-					ms.put(Blockdata(is.getTypeId()),
-							ms.get(Blockdata(is.getTypeId())) + is.getAmount());
-				}else{
-					ms.put(Blockdata(is.getTypeId()),
-							is.getAmount());
-				}
-			}else{
-				if (ms.containsKey(Blockdata(is.getTypeId(), is.getData().getData()))) {
-					ms.put(Blockdata(is.getTypeId(), is.getData().getData()),
-							ms.get(Blockdata(is.getTypeId(), is.getData().getData())) + is.getAmount());
-				}else{
-					ms.put(Blockdata(is.getTypeId(), is.getData().getData()),
-							is.getAmount());
-				}
-			}
+		if(is == null)
+			return; // Log error as well.
+		int blockId = is.getTypeId();
+		byte data = is.getData() != null ? is.getData().getData() : 0;
+		int key = BlockData(blockId, data);
+		int previousAmount = 0;
+		if (ms.containsKey(key)) {
+			previousAmount = ms.get(key);
+		} else {
+			ms.put(key, previousAmount + is.getAmount());
 		}
 	}
 
